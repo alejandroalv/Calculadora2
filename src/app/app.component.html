@@ -1,0 +1,143 @@
+
+<div class="card">
+  <div class="card-header">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <h2> <span class="badge">Calculadora capacitor y resistencia</span></h2>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+
+
+
+
+
+
+  <div class="container">
+
+
+
+
+    <div class="container">
+
+
+      <div class="row">
+        <div class="col-lg-3 col-sm-6 col-xs-6">
+          <button type="button" class="btn btn-dark btn-block" (click)="doSomething('serieCapacitor')">Capacitores en serie</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-6">
+          <button type="button" class="btn btn-dark btn-block" (click)="doSomething('paraleloCapacitor')">Capacitores en paralelo</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-6">
+          <button type="button" class="btn btn-dark btn-block" (click)="doSomething('serieResistencia')">Resistencias en serie</button>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-xs-6">
+          <button type="button" class="btn btn-dark btn-block" (click)="doSomething('paraleloResistencia')">Resistencias en paralelo</button>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <label><b>Tipo de circuito:</b> {{urlFormula}}</label>
+      </div>
+    </div>
+
+
+    <br/>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12 ">
+          <img class="float-right" *ngIf="tipoCircuito === 'serieCapacitor' " src="../assets/images/serieCapacitor.png" height="70" width="233"/><br/>
+          <img class="float-right" *ngIf="tipoCircuito === 'paraleloCapacitor'" src="../assets/images/paraleloCapacitor.png" height="50" width="223"/><br/>
+          <img class="float-right" *ngIf="tipoCircuito === 'serieResistencia'" src="../assets/images/serieResistencia.png" height="40" width="293"/><br/>
+          <img class="float-right" *ngIf="tipoCircuito === 'paraleloResistencia'" src="../assets/images/paraleloResistencia.png" height="70" width="293"/><br/>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+          <img *ngIf="tipoCircuito === 'serieCapacitor'" src="../assets/images/serieCircuitoCapacitor.png" height="133" width="325"/>
+          <img *ngIf="tipoCircuito === 'paraleloCapacitor'" src="../assets/images/paraleloCircuitoCapacitor.png" height="143" width="345"/>
+          <img *ngIf="tipoCircuito === 'serieResistencia'" src="../assets/images/serieCircuitoResistencia.png" height="133" width="335"/>
+          <img *ngIf="tipoCircuito === 'paraleloResistencia'" src="../assets/images/paraleloResistenciaCircuito.png" height="143" width="345"/>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          <label><b>Resultado:</b> {{resultado}} {{magnitud}}</label>
+        </div>
+      </div>
+
+
+    <br/>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+
+        <div *ngFor="let user of listadoCapacitores; index as i; first as isFirst">
+          <label><b>Capacitor {{i+1}}</b></label>
+            <div class="row" >
+              <div class="col-lg-8 col-sm-8 col-md-8">
+                <input type="text" class="form-control" aria-label="Text input with dropdown button"  [(ngModel)]="user.valor" (keyup)="calcular()" >
+              </div>
+              <div class="col-lg-4 col-sm-4 col-md-4" *ngIf="tipoCircuito === 'serieCapacitor' ||  tipoCircuito === 'paraleloCapacitor'">
+                <select [(ngModel)]="user.tipo" class="browser-default custom-select" (change)="calcular()">
+                    <option selected>μF</option>
+                    <option>mF</option>
+                    <option>nF</option>
+                    <option>pF</option>
+                </select>
+              </div>
+              <div class="col-lg-4 col-sm-4 col-md-4" *ngIf="tipoCircuito === 'serieResistencia' ||  tipoCircuito === 'paraleloResistencia'">
+                <select class="browser-default custom-select" (change)="calcular()">
+                  <option selected>Ω</option>
+                </select>
+              </div>
+            </div>
+            <br/>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <br/>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-6">
+              <button class="float-right" type="button" class="btn btn-dark btn-block" (click)="agregarCapacitor()">Agregar capacitor</button>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-6">
+              <button type="button" class="btn btn-dark btn-block" (click)="quitarCapacitor()" [disabled]="blockAddButton">Quitar capacitor</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+  </div>
+</div>
+
+
+
+
